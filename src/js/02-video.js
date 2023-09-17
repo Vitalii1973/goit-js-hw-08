@@ -27,12 +27,10 @@ vimeoPlayer.on(
 
 // Отримуємо збережений час відтворення та встановлюємо його
 const savedTime = loadCurrentTime();
-vimeoPlayer
-  .setCurrentTime(savedTime)
-  .then(() => {
-    // Після встановлення часу відтворення, запускаємо відтворення
-    vimeoPlayer.play();
-  })
-  .catch(error => {
-    console.error('Unable to set the current time:', error);
-  });
+if (savedTime > 0) {
+  const savedTime = loadCurrentTime();
+
+  if (savedTime > 0) {
+    vimeoPlayer.setCurrentTime(savedTime);
+  }
+}
